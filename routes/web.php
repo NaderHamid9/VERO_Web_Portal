@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', [TaskController::class, 'index'])->name('tasks.index');
-Route::get('/tasks/store', [TaskController::class, 'store'])->name('tasks.store');
+Route::get('/tasks/update', [TaskController::class, 'refreshTasks']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

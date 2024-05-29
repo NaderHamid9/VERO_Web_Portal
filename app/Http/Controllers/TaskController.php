@@ -42,7 +42,7 @@ class TaskController extends Controller
             return $this->error($response->body());
         }
     }
-    
+
     public function index()
     {
         $taskApiUrl = config('app.task_api_url');
@@ -64,6 +64,29 @@ class TaskController extends Controller
             return $loginResult; // Return or handle the error message
         }
     }
+    public function refreshTasks()
+    {
+        $taskApiUrl = config('app.task_api_url');
+        $loginResult = $this->login();
+
+        // Check if login was successful
+        if (isset($loginResult['access_token']) && isset($loginResult ['expires_in'])) {
+            $accessToken = $loginResult['access_token'];
+            $expiry = $loginResult['expires_in'];
+
+            $response = Http::withToken($accessToken)->get($taskApiUrl);
+            if ($response->successful() && $response->body()) {
+                $tasks = $response->json();
+                return response()->json($tasks);
+            } else {
+                return response()->json(['error' => 'Failed to fetch tasks'], 500);
+            }
+        } else {
+            return response()->json($loginResult, 500); // Return or handle the error message
+        }
+    }
+
+
 
     /**
      * Show the form for creating a new resource.
