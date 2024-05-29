@@ -1,33 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <style>
-        .spinner {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border: 16px solid #f3f3f3;
-            border-top: 16px solid #3498db;
-            border-radius: 50%;
-            width: 120px;
-            height: 120px;
-            animation: spin 2s linear infinite;
-        }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        #tasks-container {
-            opacity: 1;
-            transition: opacity 0.5s ease-in-out;
-        }
-
-        #tasks-container.hidden {
-            opacity: 0;
-        }
-    </style>
      <div class="spinner" id="loading-spinner"></div>
      <div class="container mx-auto index-container" id="tasks-container">
          <h1 class="text-center text-5xl mt-5 font-semibold text-gray-800 capitalize sm:text-5xl dark:text-white form-title block me-auto mb-5">Tasks</h1>
@@ -56,15 +29,15 @@
                  </tr>
                  </thead>
                  <tbody id="tasks-table-body">
-                 @foreach($task as $item)
+                 @foreach($tasks as $task)
                      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                          <td class="w-4 p-4">{{ $loop->iteration }}</td>
                          <td class="px-6 py-4">
-                             <button style="background-color: {{ $item['colorCode'] }}" class="font-medium rounded-lg text-sm px-5 py-5 me-2 mb-2"></button>
+                             <button style="background-color: {{ $task->colorCode }}" class="font-medium rounded-lg text-sm px-5 py-5 me-2 mb-2"></button>
                          </td>
-                         <td class="px-6 py-4">{{ $item['task'] }}</td>
-                         <td class="px-6 py-4">{{ $item['title'] }}</td>
-                         <td class="px-6 py-4">{{ $item['description'] }}</td>
+                         <td class="px-6 py-4">{{ $task->task }}</td>
+                         <td class="px-6 py-4">{{ $task->title }}</td>
+                         <td class="px-6 py-4">{{ $task->description }}</td>
                      </tr>
                  @endforeach
                  </tbody>

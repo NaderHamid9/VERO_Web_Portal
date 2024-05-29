@@ -45,35 +45,26 @@ class TaskController extends Controller
 
     public function index()
     {
-        $taskApiUrl = config('app.task_api_url');
-        $loginResult = $this->login();
-
-        // Check if login was successful
-        if (isset($loginResult['access_token']) && isset($loginResult ['expires_in'])) {
-            $accessToken = $loginResult['access_token'];
-            $expiry = $loginResult['expires_in'];
-
-            $response = Http::withToken($accessToken)->get($taskApiUrl);
-            if ($response->successful() && $response->body()) {
-                $task = $response->json();
-                return view('tasks.index' , compact('task'));
-            } else {
-                return "error";
-            }
+        $tasksResponse = $this->getTasks();
+    
+        // Check if tasks were fetched successfully
+        if ($tasksResponse->status() == 200) {
+            $tasks = $tasksResponse->getData();
+            return view('tasks.index', compact('tasks'));
         } else {
-            return $loginResult; // Return or handle the error message
+            return "error";
         }
     }
-    public function refreshTasks()
+    
+    public function getTasks()
     {
         $taskApiUrl = config('app.task_api_url');
         $loginResult = $this->login();
-
+    
         // Check if login was successful
-        if (isset($loginResult['access_token']) && isset($loginResult ['expires_in'])) {
+        if (isset($loginResult['access_token']) && isset($loginResult['expires_in'])) {
             $accessToken = $loginResult['access_token'];
-            $expiry = $loginResult['expires_in'];
-
+    
             $response = Http::withToken($accessToken)->get($taskApiUrl);
             if ($response->successful() && $response->body()) {
                 $tasks = $response->json();
@@ -82,12 +73,9 @@ class TaskController extends Controller
                 return response()->json(['error' => 'Failed to fetch tasks'], 500);
             }
         } else {
-            return response()->json($loginResult, 500); // Return or handle the error message
+            return response()->json($loginResult, 500); 
         }
     }
-    
-
-
 
     /**
      * Show the form for creating a new resource.

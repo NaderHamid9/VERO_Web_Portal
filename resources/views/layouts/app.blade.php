@@ -11,15 +11,16 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <link rel="stylesheet" href="{{ asset('/css/style.css').'?v='.config('app.version') }}">
-    {{--    <link rel="stylesheet" href="{{ asset('/css/print.css').'?v='.config('app.version') }}" media="print">--}}
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.16/build/css/intlTelInput.css">
+    <link rel="stylesheet" href="{{ asset('/css/style.css').'?v='.config('app.version') }}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+
 </head>
 <body class="antialiased">
 <div class="min-h-screen bg-gray-100 pb-20">
@@ -31,7 +32,6 @@
         <nav class="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-                    <img src="{{asset('images/bank-logo.png')}}" class="h-9" alt="bank Logo" />
                 </a>
                 <button data-collapse-toggle="navbar-multi-level" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-multi-level" aria-expanded="false">
                     <span class="sr-only">Open main menu</span>
@@ -157,32 +157,16 @@
 <footer class="bg-white rounded-lg  dark:bg-gray-900 m-4 ">
     <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
         <div class="sm:flex sm:items-center sm:justify-between">
-            <a href="https://flowbite.com/" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-                <img src="{{asset('images/bank-logo.png')}}" class="h-10" alt="شعار بنك البسيري" />
-            </a>
+        
             <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
-                <li>
-                    <a href="https://albusairibank.com" class="hover:underline me-4 md:me-6">موقع البنك</a>
-                </li>
-                <li>
-                    <a href="https://finance.albusairibank.com" class="hover:underline me-4 md:me-6">تيسير من بنك البسيري</a>
-                </li>
-                <li>
-                    <a href="https://ratbi.albusairibank.com" class="hover:underline me-4 md:me-6">راتبي</a>
-                </li>
+              
 
             </ul>
         </div>
         <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-        <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400"> جميع الحقوق محفوظة لـ <a href="https://albusairibank.com" class="hover:underline">بنك البسيري للتمويل الأصغر™</a>  2024 ©. </span>
+        <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">Developed By Nader Humaid</span>
     </div>
 </footer>
-
-
-
-
-
-@livewireScripts
 
 </body>
 </html>

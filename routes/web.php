@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', [TaskController::class, 'index'])->name('tasks.index');
-Route::get('/tasks/update', [TaskController::class, 'refreshTasks']);
+Route::get('/tasks/update', [TaskController::class, 'getTasks']);
 Route::get('/tasks/search', [TaskController::class, 'search']);
 
 
