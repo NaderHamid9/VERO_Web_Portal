@@ -28,10 +28,9 @@ class TaskController extends Controller
             'Content-Type' => 'application/json',
         ])->post($loginApiUrl, $postData);
 
-        // Handle the response
         if ($response->successful()) {
             $data = $response->json();
-            // Extract the access_token
+
             $accessToken = $data['oauth']['access_token'];
             $expiry = $data['oauth']['expires_in'];
             return [
@@ -47,7 +46,6 @@ class TaskController extends Controller
     {
         $tasksResponse = $this->getTasks();
     
-        // Check if tasks were fetched successfully
         if ($tasksResponse->status() == 200) {
             $tasks = $tasksResponse->getData();
             return view('tasks.index', compact('tasks'));
@@ -61,7 +59,6 @@ class TaskController extends Controller
         $taskApiUrl = config('app.task_api_url');
         $loginResult = $this->login();
     
-        // Check if login was successful
         if (isset($loginResult['access_token']) && isset($loginResult['expires_in'])) {
             $accessToken = $loginResult['access_token'];
     
@@ -77,51 +74,4 @@ class TaskController extends Controller
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Task $task)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Task $task)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Task $task)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Task $task)
-    {
-        //
-    }
 }
