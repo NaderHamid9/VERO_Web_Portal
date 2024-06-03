@@ -20,6 +20,8 @@ function fetchTasks() {
         },
     });
 }
+setInterval(fetchTasks, 10000); // Repeat fetch every 60 minutes
+
 
 function updateTable(tasks) {
     let tbody = $("#tasks-table-body");
