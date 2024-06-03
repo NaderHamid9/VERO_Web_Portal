@@ -20,7 +20,7 @@ function fetchTasks() {
         },
     });
 }
-setInterval(fetchTasks, 10000); // Repeat fetch every 60 minutes
+setInterval(fetchTasks, 3600000); //Repeat fetch every 60 minutes
 
 
 function updateTable(tasks) {
